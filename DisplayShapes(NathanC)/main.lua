@@ -1,9 +1,8 @@
 -- Title: DisplayShapes 
 -- Name: Nathan Cook
 -- Course: ICS2O/3C
--- This program displays 3 shapes on the iPad of diiferent colours and borders. Underneath each
--- shape is the name of it. 
---
+-- This program displays 3 shapes on the iPad of diiferent colours and borders.
+-- Underneath each shape is the name of it. 
 -----------------------------------------------------------------------------------------
 
 --remove status bar
@@ -21,13 +20,13 @@ local Textsize = 30
 Triangle = display.newPolygon( 150, 200, vertices)
 
 --set colour of Triangle
-Triangle:setFillColor(0.5, 0.4, 0.7)
+Triangle:setFillColor(1, 1, 102/255)
 
 --set stroke width of border
 Triangle.strokeWidth = 10 
 
 --set the colour of the border
-Triangle:setStrokeColor(0, 0, 0)
+Triangle:setStrokeColor(0.6, 0.3, 0.6)
 
 --Write text on screen 
 areaText = display.newText("Triangle", 150, 325, Arial, Textsize)
@@ -41,13 +40,13 @@ local Textsize2 = 30
 Quadrilateral = display.newPolygon( 400, 190, vertices2)
 
 --set the colour of the Quadrilateral
-Quadrilateral:setFillColor(0.5, 0.4, 0.7)
+Quadrilateral:setFillColor(0, 0, 1)
 
 --set stroke width of the border
 Quadrilateral.strokeWidth = 10 
 
 --set colour of the border
-Quadrilateral:setStrokeColor(0, 0, 0)
+Quadrilateral:setStrokeColor(0.5, 0.7, 0.5)
 
 --Write text on screen
 areaText2 = display.newText("Quadrilateral", 425, 325, Arial, Textsize2)
@@ -67,7 +66,39 @@ Pentagon:setFillColor(0.5, 0.4, 0.7)
 Pentagon.strokeWidth = 10 
 
 --set colour of the border
-Pentagon:setStrokeColor(0, 0, 0) 
+Pentagon:setStrokeColor(1, 0.4, 0) 
 
 --Write text on screen 
 areaText3 = display.newText("Pentagon", 725, 325, Arial, Textsize3)
+
+local vertices4 = { 75,130, 250,130, 330,235, 250,340, 75,340, 9,225}
+local hexagon
+local areaText4
+local Textsize4 = 30 
+
+--display the Hexagon 
+hexagon = display.newPolygon( 505, 500, vertices4)
+
+--set the colour of the Hexagon
+hexagon:setFillColor(0.8, 0.4, 0.7) 
+
+--set stroke width of the hexagon
+hexagon.strokeWidth = 10
+
+--set colour of the border
+hexagon:setStrokeColor(0, 1, 0.5)
+
+--write text on screen 
+areaText4 = display.newText("Hexagon", 500, 642, Arial, Textsize4) 
+
+local Textsize5 = 60 
+local Textsize6 = 30
+
+--write title text on screen 
+Textsize5 = display.newText("Shapes", 505, 710, Arial, Textsize5)
+
+--set colour of the text
+Textsize5:setTextColor(0, 0, 204/255)
+
+-- write text on screen
+Textsize6 = display.newText("By: Nathan Cook", 900, 720, Arial, Textsize6)

@@ -19,7 +19,7 @@ local scrollSpeed = 10
 --set image to be transparent
 HockeySticks.alpha = 0
 
---set initial x and y position of HockeyPlayer
+--set initial x and y position of HockeySticks
 HockeySticks.x = 100
 HockeySticks.y = display.contentHeight/2
 
@@ -38,28 +38,28 @@ end
 Runtime:addEventListener("enterFrame", MoveSticks)
 
 --add character image with width and height
-local ilyaKovalchuck = display.newImageRect("Images/ilya,Kovalchuck.png", 300, 300)
+local HockeyPlayer = display.newImageRect("Images/HockeyPlayer.png", 300, 300)
 
 --create a scroll speed
 local scrollSpeed2 = 15
 
 --set image to be transparent
-ilyaKovalchuck = 0
+HockeyPlayer = 0
 
---set initial x and position of ilya,Kovalchuck
-ilyaKovalchuck.x = 150
-ilyaKovalchuck.y = 150
+--set initial x and y position of HockeySticks
+HockeyPlayer.x = 100
+HockeyPlayer.y = display.contentHeight/4
 
---function: MoveIlya
+--function: MovePlayer
 --Input: this function accepts event listener
 --Output: none
---Description: This function adds the scroll spped to the y-value of ilya
-local function MoveIlya(event)
+--Description: This function adds the scroll spped to the y-value of HockeyPlayer
+local function MovePLayer(event)
 	--add scroll speed to y-value of ilya
-	ilyaKovalchuck.y = ilyaKovalchuck.y + scrollSpeed2
+	HockeyPlayer.x = HockeyPlayer.x + scrollSpeed2
 	--change the transparency of the ship every time it moves so it fades out. 
-	ilyaKovalchuck.alpha = ilyaKovalchuck + 0.05
+	HockeyPlayer.alpha = HockeyPlayer + 0.05
 end
 
---Moveilya will be called over and over again.\
-Runtime:addEventListener("enterFrame", MoveIlya)
+--MovePlayer will be called over and over again.
+Runtime:addEventListener("enterFrame", MovePlayer)

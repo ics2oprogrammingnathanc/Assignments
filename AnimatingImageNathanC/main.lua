@@ -1,3 +1,4 @@
+
 -- Title: AnimatingImages
 -- Name: Nathan Cook
 -- Course: ICS2O/3C
@@ -38,13 +39,13 @@ end
 Runtime:addEventListener("enterFrame", MoveSticks)
 
 --add character image with width and height
-local HockeyPlayer = display.newImageRect("Images/HockeyPlayer.png", 300, 300)
+local HockeyPlayer = display.newImageRect("Images/ilyaKovalchuck.png", 300, 300)
 
 --create a scroll speed
 local scrollSpeed2 = 15
 
 --set image to be transparent
-HockeyPlayer = 0
+HockeyPlayer.alpha = 0
 
 --set initial x and y position of HockeySticks
 HockeyPlayer.x = 100
@@ -54,11 +55,11 @@ HockeyPlayer.y = display.contentHeight/4
 --Input: this function accepts event listener
 --Output: none
 --Description: This function adds the scroll spped to the y-value of HockeyPlayer
-local function MovePLayer(event)
+local function MovePlayer(event)
 	--add scroll speed to y-value of ilya
 	HockeyPlayer.x = HockeyPlayer.x + scrollSpeed2
 	--change the transparency of the ship every time it moves so it fades out. 
-	HockeyPlayer.alpha = HockeyPlayer + 0.05
+	HockeyPlayer.alpha = HockeyPlayer.alpha + 0.05
 end
 
 --MovePlayer will be called over and over again.

@@ -1,80 +1,104 @@
--- Title: AnimatingImages
+-- Title: DisplayShapes 
 -- Name: Nathan Cook
 -- Course: ICS2O/3C
--- This program displays images that change size, state and shape while continously 
---moving around the screen of the iPad Air. 
+-- This program displays 3 shapes on the iPad of diiferent colours and borders.
+-- Underneath each shape is the name of it. 
+-----------------------------------------------------------------------------------------
 
---hide the status bar
-display.setStatusBar(display.HiddenStatusBar) 
+--remove status bar
+display.setStatusBar(display.HiddenStatusBar)
 
---set image background
-local backgroundImage = display.newImageRect("Images/HockeyRink0.jpg", 2048, 1536)
+-- set background colour 
+display.setDefault("background", 200/255, 95/255, 100/255)
 
---create a text variable
-local textObject
+local vertices = { 0,150, 0,0, 100,100 }
+local Triangle 
+local areaText
+local Textsize = 30
 
---display text on screen
-textObject =display.newText( "Animating Images!", 500, 700, nil, 60)
+--display triangle 
+Triangle = display.newPolygon( 150, 200, vertices)
 
---set text colour
-textObject:setTextColor(0.8, 0.3, 0.9)
+--set colour of Triangle
+Triangle:setFillColor(1, 1, 102/255)
 
---character image with width and height
-local HockeySticks = display.newImageRect("Images/HockeySticks.png", 250, 200)
+--set stroke width of border
+Triangle.strokeWidth = 10 
 
---Create a scroll speed
-local scrollSpeed = 6
+--set the colour of the border
+Triangle:setStrokeColor(0.6, 0.3, 0.6)
 
---set image to be transparent
-HockeySticks.alpha = 1
+--Write text on screen 
+areaText = display.newText("Triangle", 150, 325, Arial, Textsize)
 
---set initial x and y position of HockeySticks
-HockeySticks.x = 100
-HockeySticks.y = 150
+local vertices2 = { 350,350, 400,500, 550,500, 500,300}
+local Quadrilateral 
+local areaText2
+local Textsize2 = 30 
 
---Function: MoveSticks
---Input: this function accepts an event listener
---Output: none
---Description: This function adds the scroll speed to the x-value of the sticks
-local function MoveSticks(event) 
-	--add the scroll speed to the x-value of the sticks.
-	HockeySticks.x = HockeySticks.x + scrollSpeed
-	--change the transparency of the ship every time it moves so it fades out
-	HockeySticks.alpha = HockeySticks.alpha - 0.005
-	--rotate image forever
-	HockeySticks.rotation = HockeySticks.rotation + 7
-end
+--display the quadrilateral 
+Quadrilateral = display.newPolygon( 400, 190, vertices2)
 
---MoveSticks will be called over and over again
-Runtime:addEventListener("enterFrame", MoveSticks)
+--set the colour of the Quadrilateral
+Quadrilateral:setFillColor(0, 0, 1)
 
---add character image with width and height
-local HockeyPlayer = display.newImageRect("Images/ilyaKovalchuck.png", 250, 350)
+--set stroke width of the border
+Quadrilateral.strokeWidth = 10 
 
---create a scroll speed
-local scrollSpeed2 = 5
+--set colour of the border
+Quadrilateral:setStrokeColor(0.5, 0.7, 0.5)
 
---set image to be transparent
-HockeyPlayer.alpha = 0
+--Write text on screen
+areaText2 = display.newText("Quadrilateral", 425, 325, Arial, Textsize2)
 
---set initial x and y position of HockeySticks
-HockeyPlayer.x = 100
-HockeyPlayer.y = 500
+local vertices3 = { 350,350, 400,500, 525,500, 590,350, 470,275}
+local Pentagon 
+local areaText3
+local Textsize3 = 30 
 
---function: MovePlayer
---Input: this function accepts event listener
---Output: none
---Description: This function adds the scroll spped to the y-value of HockeyPlayer
-local function MovePlayer(event)
-	--add scroll speed to y-value of ilya
-	HockeyPlayer.x = HockeyPlayer.x + scrollSpeed2
-	--change the transparency of the ship every time it moves so it fades out. 
-	HockeyPlayer.alpha = HockeyPlayer.alpha + 0.004
-	--change the x scale value while moving across the screen 
-	HockeyPlayer.xScale = HockeyPlayer.xScale + 0.005
-	--change the y scale value while moving across the screen
-	HockeyPlayer.yScale = HockeyPlayer.yScale + 0.005
-end
+--display the pentagon
+Pentagon = display.newPolygon( 725, 170, vertices3)
 
---MovePlayer will be called over and over again.
-Runtime:addEventListener("enterFrame", MovePlayer)
+--set the colour of the Pentagon
+Pentagon:setFillColor(0.5, 0.4, 0.7) 
+
+--set stroke width of the Pentagon
+Pentagon.strokeWidth = 10 
+
+--set colour of the border
+Pentagon:setStrokeColor(1, 0.4, 0) 
+
+--Write text on screen 
+areaText3 = display.newText("Pentagon", 725, 325, Arial, Textsize3)
+
+local vertices4 = { 75,130, 250,130, 330,235, 250,340, 75,340, 9,225}
+local hexagon
+local areaText4
+local Textsize4 = 30 
+
+--display the Hexagon 
+hexagon = display.newPolygon( 505, 500, vertices4)
+
+--set the colour of the Hexagon
+hexagon:setFillColor(0.8, 0.4, 0.7) 
+
+--set stroke width of the hexagon
+hexagon.strokeWidth = 10
+
+--set colour of the border
+hexagon:setStrokeColor(0, 1, 0.5)
+
+--write text on screen 
+areaText4 = display.newText("Hexagon", 500, 642, Arial, Textsize4) 
+
+local Textsize5 = 60 
+local Textsize6 = 30
+
+--write title text on screen 
+Textsize5 = display.newText("Shapes", 505, 710, Arial, Textsize5)
+
+--set colour of the text
+Textsize5:setTextColor(0, 0, 204/255)
+
+-- write text on screen
+Textsize6 = display.newText("By: Nathan Cook", 900, 720, Arial, Textsize6)

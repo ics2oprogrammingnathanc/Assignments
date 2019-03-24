@@ -22,7 +22,7 @@ textObject:setTextColor(0.8, 0.3, 0.9)
 --character image with width and height
 local HockeySticks = display.newImageRect("Images/HockeySticks.png", 250, 200)
 
---Create a scroll speed
+--Create a scroll speedKKKK
 local scrollSpeed = 6
 
 --set image to be transparent
@@ -78,3 +78,33 @@ end
 
 --MovePlayer will be called over and over again.
 Runtime:addEventListener("enterFrame", MovePlayer)
+
+
+--character image with width and height
+local hockeypuck = display.newImageRect("Images/hockeypuck1.png", 200, 200)
+
+--Create a scroll speed
+local scrollSpeed = -6
+
+--set image to be transparent
+hockeypuck.alpha = 1
+
+--set initial x and y position of HockeySticks
+hockeypuck.x = 900
+hockeypuck.y = 150
+
+--Function: MoveSticks
+--Input: this function accepts an event listener
+--Output: none
+--Description: This function adds the scroll speed to the x-value of the sticks
+local function MovePuck(event) 
+	--add the scroll speed to the x-value of the sticks.
+	hockeypuck.x = hockeypuck.x + scrollSpeed
+	--change the transparency of the ship every time it moves so it fades out
+	hockeypuck.alpha = hockeypuck.alpha - 0.005
+	--rotate image forever
+	hockeypuck.rotation = hockeypuck.rotation + 4
+end
+
+--MovePlayer will be called over and over again.
+Runtime:addEventListener("enterFrame", MovePuck)

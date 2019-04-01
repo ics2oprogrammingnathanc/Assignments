@@ -1,3 +1,4 @@
+
 -- Title: MathQuizNathanC
 -- Name: Nathan Cook
 -- Course: ICS2O/3C
@@ -7,7 +8,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- sets the background colour
-display.setDefault("background", 0.4, 0.7, 0.5)
+display.setDefault("background", 0.8, 0.7, 0.5)
 
 -- variables for the timer 
 local totalSeconds = 10
@@ -99,8 +100,8 @@ local function AskQuestion()
 	if (randomOperator ==1) then
 
 		-- generate 2 random numbers between a max. and a min. number
-		randomNumber1 = math.random(0, 4)
-		randomNumber2 = math.random(0, 4)
+		randomNumber1 = math.random(1, 20)
+		randomNumber2 = math.random(1, 20)
 
 		correctAnswer = randomNumber1 + randomNumber2
 
@@ -111,8 +112,8 @@ local function AskQuestion()
 	elseif (randomOperator == 2) then
 
 		-- generate 2 random numbers
-		randomNumber1 = math.random(5, 10)
-		randomNumber2 = math.random(0, 4)
+		randomNumber1 = math.random(10, 20)
+		randomNumber2 = math.random(1, 9)
 
 		-- calculate correct answer
 		correctAnswer = randomNumber1 - randomNumber2
@@ -137,8 +138,8 @@ local function AskQuestion()
 			elseif (randomOperator == 4) then
 
 				--generate 2 random numbers
-				randomNumber1 = math.random(0, 10)
-				randomNumber2 = math.random(0, 10)
+
+				randomNumber1 = math.random(1, 100)
 
 				-- calculate correct answer
 				correctAnswer = randomNumber1 / randomNumber2

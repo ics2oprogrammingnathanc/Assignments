@@ -1,14 +1,15 @@
-
--- Title: MathQuizNathanC
+-- Title: MathQuiz
 -- Name: Nathan Cook
 -- Course: ICS2O/3C
--- This program...
+-- This program asks many math related questions with over 5 different operaters. The program includes different sound effects for
+-- correct and incorrect answers, as well as typed messages at the end of each game.
+-- While throughout the game, keeping track of score and lives left.
 
 -- hide status bar
 display.setStatusBar(display.HiddenStatusBar)
 
 -- sets the background colour
-display.setDefault("background", 0.8, 0.7, 0.5)
+display.setDefault("background", 0.5, 0.7, 0.7)
 
 -- variables for the timer 
 local totalSeconds = 10
@@ -38,15 +39,19 @@ local correctAnswers2
 local timerText
 local endGame
 local endGameBad
-local correctSound = audio.loadSound( "SoundEffects/Cash Register Cha Ching.mp3")
-local incorrectSound = audio.loadSound( "SoundEffects/whack.mp3")
+local correctSound = audio.loadSound( "SoundEffects/sound37.mp3")
+local incorrectSound = audio.loadSound( "SoundEffects/clearing-throat-1.wav")
 local correctSoundChannel
 local incorrectSoundChannel
+local correctSound2 = audio.loadSound( "SoundEffects/sound7.mp3")
+local incorrectSound2 = audio.loadSound( "SoundEffects/sound8.mp3")
+local correctAnswers12
+local incorrectSoundChannel2k
 ---------------------------------------------------
 -- LOCAL FUNCTIONS
 ----------------------------------------------------------
 local function UpdateTime()
-	if 	(answerCounter >= 8) then
+	if 	(answerCounter >= 5) then
 				timer.cancel(countDownTimer)
 				endGame.isVisible = true 
 				numberOfCorrect.isVisible = false
@@ -94,7 +99,7 @@ end
 local function AskQuestion()
 	-- generate a random number between 1 and 2
 	--** make sure to declare the variable
-	randomOperator = math.random(1, 4)
+	randomOperator = math.random(1, 5)
 
 	--if random operater equals 1, do addition
 	if (randomOperator ==1) then
@@ -134,12 +139,12 @@ local function AskQuestion()
 			--- create question in text object
 			questionObject.text = randomNumber1 .. " x " .. randomNumber2 .. " = "
 
-			-- if random operater is 4, preform division
+			-- if random operater is 4, perform division
 			elseif (randomOperator == 4) then
 
 				--generate 2 random numbers
-
 				randomNumber1 = math.random(1, 100)
+				randomNumber2 = math.random(1, 100)
 
 				-- calculate correct answer
 				correctAnswer = randomNumber1 / randomNumber2
@@ -148,6 +153,18 @@ local function AskQuestion()
 				-- create question in text object
 				questionObject.text = randomNumber1 .. " / " .. randomNumber2 .. " = "
 
+				-- If random operater is 5, perform exponets
+			    elseif (randomOperator == 5) then
+
+			    	--generate 2 random numbers
+			    	randomNumber1 = math.random(1, 5)
+			    	randomNumber2 = math.random(1, 5)
+
+			    	-- calculate correct answers
+			    	correctAnswer = randomNumber1 ^ randomNumber2
+
+			    	-- create question in text object
+			    	questionObject.text = randomNumber1 .. "^" .. randomNumber2 .. " = "
 	end
 end
 
@@ -176,11 +193,13 @@ local function NumericFieldListener( event )
 			timer.performWithDelay(1000, HideCorrect)
 			numberOfCorrect.text = answerCounter
 			secondsLeft = totalSeconds
+			correctSoundChannel2 = audio.play(correctSound2)
 		else 
 			incorrectObject.isVisible = true
 			timer.performWithDelay(1000, HideCorrect)
 			secondsLeft = totalSeconds
 			lives = lives - 1
+			incorrectSoundChannel2 = audio.play(incorrectSound2)
 
 			if(lives == 2) then
 				heart3.isVisible = false
@@ -236,7 +255,7 @@ numericField = native.newTextField( display.contentWidth/2, display.contentHeigh
 numericField.inputType = "number"
 
 -- add text for title
-correctAnswers1 = display.newText( "Cool Math Questions!", display.contentWidth/2, display.contentHeight/4, nil, 65 )
+correctAnswers1 = display.newText( "Math Quiz!", display.contentWidth/2, display.contentHeight/3.5, nil, 65 )
 correctAnswers1:setTextColor( 1, 0.1, 0.3)
 
 -- add the count of correct answers

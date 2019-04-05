@@ -8,7 +8,7 @@
 display.setStatusBar(display.HiddenStatusBar)
 
 -- sets the background colour
-display.setDefault("background", 0.8, 0.7, 0.5)
+display.setDefault("background", 0.5, 0.7, 0.7)
 
 -- variables for the timer 
 local totalSeconds = 10
@@ -46,7 +46,7 @@ local incorrectSoundChannel
 -- LOCAL FUNCTIONS
 ----------------------------------------------------------
 local function UpdateTime()
-	if 	(answerCounter >= 8) then
+	if 	(answerCounter >= 5) then
 				timer.cancel(countDownTimer)
 				endGame.isVisible = true 
 				numberOfCorrect.isVisible = false

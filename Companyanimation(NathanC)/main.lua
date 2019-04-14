@@ -18,10 +18,16 @@ local scrollXSpeed = 7
 local scrollYSpeed = -3
 local soundef = audio.loadSound("Sounds/sound8.mp3")
 local soundefChannel
-local scrollXSpeed2 = -10
-local scrollYSpeed2 = -12
+local scrollXSpeed2 = -8
+local scrollYSpeed2 = -8
 -----------------------------------------------------------------------------------------
-
+--AUDIO
+-----------------------------------------------------------------------------
+-- Play audio
+	soundefChannel = audio.play(soundef)
+----------------------------------------------------------------------------
+--OBJECT CREATION
+---------------------------------------------------------------------------
 -- have image display
 logo = display.newImageRect("Images/CompanyLogoNathanC@2x.png", 300, 300)
 logo.x = 100
@@ -42,8 +48,6 @@ local function moveLogo()
 	logo.alpha = logo.alpha - 0.004
 	-- rotate logo
 	logo.rotation = logo.rotation + 4
-	-- Play audio
-	soundefChannel = audio.play(soundef)
 end
 
 local function moveLogo2()
@@ -53,8 +57,6 @@ local function moveLogo2()
 	logo3.alpha = logo3.alpha - 0.004
 	-- rotate logo
 	logo3.rotation = logo3.rotation + 4
-	-- Play audio
-	soundefChannel = audio.play(soundef)
 end
 
 Runtime:addEventListener("enterFrame", moveLogo)

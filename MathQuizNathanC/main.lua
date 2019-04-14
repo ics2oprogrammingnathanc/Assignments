@@ -46,22 +46,28 @@ local incorrectSoundChannel
 local correctSound2 = audio.loadSound( "SoundEffects/sound7.mp3")
 local incorrectSound2 = audio.loadSound( "SoundEffects/sound8.mp3")
 local correctAnswers12
-local incorrectSoundChannel2k
+local incorrectSoundChannel2
+local sadFace
+local happyFace
+local theAnswer
 ---------------------------------------------------
 -- LOCAL FUNCTIONS
 ----------------------------------------------------------
+
 local function UpdateTime()
 	if 	(answerCounter >= 5) then
 				timer.cancel(countDownTimer)
 				endGame.isVisible = true 
 				numberOfCorrect.isVisible = false
 				correctSoundChannel = audio.play(correctSound)
+				happyFace.isVisible = true
 				
 		elseif (lives <= 0) then
 				timer.cancel(countDownTimer)
 				endGameBad.isVisible = true
 				numberOfCorrect.isVisible = false
 				incorrectSoundChannel = audio.play(incorrectSound)
+				sadFace.isVisible = true
 		end	
 	-- decrement the number of seconds
 	secondsLeft = secondsLeft - 1
@@ -100,6 +106,11 @@ local function AskQuestion()
 	-- generate a random number between 1 and 2
 	--** make sure to declare the variable
 	randomOperator = math.random(1, 5)
+
+	-- making certain objects and text invisible
+	theAnswertitle.isVisible = false
+	happyFace.isVisible = false
+	sadFace.isVisible = false
 
 	--if random operater equals 1, do addition
 	if (randomOperator ==1) then
@@ -143,8 +154,8 @@ local function AskQuestion()
 			elseif (randomOperator == 4) then
 
 				--generate 2 random numbers
-				randomNumber1 = math.random(1, 100)
-				randomNumber2 = math.random(1, 100)
+				randomNumber1 = math.random(50, 100)
+				randomNumber2 = math.random(1, 50)
 
 				-- calculate correct answer
 				correctAnswer = randomNumber1 / randomNumber2
@@ -172,6 +183,8 @@ end
 local function HideCorrect()
 	correctObject.isVisible = false
 	incorrectObject.isVisible = false
+	theAnswer.isVisible = false
+	theAnswertitle.isVisible = false
 	AskQuestion()
 end
 
@@ -194,8 +207,11 @@ local function NumericFieldListener( event )
 			numberOfCorrect.text = answerCounter
 			secondsLeft = totalSeconds
 			correctSoundChannel2 = audio.play(correctSound2)
+			theAnswertitle.isVisible = false
 		else 
 			incorrectObject.isVisible = true
+			theAnswer.text = correctAnswer
+			theAnswertitle.isVisible = true
 			timer.performWithDelay(1000, HideCorrect)
 			secondsLeft = totalSeconds
 			lives = lives - 1
@@ -203,13 +219,19 @@ local function NumericFieldListener( event )
 
 			if(lives == 2) then
 				heart3.isVisible = false
+				theAnswer.isVisible = true
+				theAnswertitle.isVisible = true
 			elseif (lives == 1) then
 				heart2.isVisible = false
 				heart3.isVisible = false
+				theAnswer.isVisible = true
+				theAnswertitle.isVisible = true
 			elseif(lives <= 0) then
 				heart1.isVisible = false
 				heart2.isVisible = false
 				heart3.isVisible = false
+				theAnswer.isVisible = true
+				theAnswertitle.isVisible = true
 			end
 		end 
 		--clear text field
@@ -223,7 +245,8 @@ end
 -- OBJECT CREATION
 ------------------------------------------------------------
 
--- create the lives to display on the screen 
+-- create the lives to display on the screen
+
 heart1 = display.newImageRect("Images/videoHeart.png", 100, 100)
 heart1.x = display.contentWidth * 7 / 8
 heart1.y = display.contentHeight * 1 / 7
@@ -282,6 +305,24 @@ endGame.isVisible = false
 endGameBad = display.newText( "Try Again. Press Ctrl + R to restart", display.contentWidth/2, display.contentHeight/1.5, nil, 55 )
 endGameBad:setTextColor( 0.3, 0.1, 1)
 endGameBad.isVisible = false
+
+--text for answer if user gets it incorrect
+theAnswer = display.newText( "", display.contentWidth/1.2, display.contentHeight*2/3, nil, 55 )
+theAnswer:setTextColor( 0.4, 0.2, 0.9)
+
+-- text for correct answer
+theAnswertitle = display.newText( "Answer was ", display.contentWidth/1.2, display.contentHeight*1.7/3, nil, 55 )
+theAnswertitle:setTextColor( 0.4, 0.2, 0.6)
+
+-- happy face for winning
+happyFace = display.newImageRect("Images/happy Face.jfif", 225, 225)
+happyFace.x = display.contentWidth * 1.7 / 8
+happyFace.y = display.contentHeight * 1 / 7
+
+-- sad face for losing
+sadFace = display.newImageRect("Images/sad Face.jfif", 225, 225)
+sadFace.x = display.contentWidth * 1.7 / 8
+sadFace.y = display.contentHeight * 1 / 7
 
 -- add the event listener for the numeric field
 numericField:addEventListener( "userInput", NumericFieldListener)

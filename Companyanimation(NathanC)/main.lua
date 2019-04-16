@@ -16,13 +16,14 @@ display.setDefault("background", 0.4, 0.7, 0.5)
 local logo
 local scrollXSpeed = 7
 local scrollYSpeed = -3
-local soundef = audio.loadSound("Sounds/sound8.mp3")
-local soundefChannel
 local scrollXSpeed2 = -8
 local scrollYSpeed2 = -8
+
 -----------------------------------------------------------------------------------------
 --AUDIO
 -----------------------------------------------------------------------------
+local soundef = audio.loadSound("Sounds/sound8.mp3")
+local soundefChannel
 -- Play audio
 	soundefChannel = audio.play(soundef)
 ----------------------------------------------------------------------------
@@ -38,6 +39,7 @@ logo2.y = 500
 logo3 = display.newImageRect("Images/CompanyLogoNathanC@2x.png", 300, 300)
 logo3.x = 1030
 logo3.y = 700
+
 ------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------
@@ -58,6 +60,10 @@ local function moveLogo2()
 	-- rotate logo
 	logo3.rotation = logo3.rotation + 4
 end
+
+------------------------------------------------------------------------------------------
+-- Event Listeners
+--------------------------------------------------------------------------------
 
 Runtime:addEventListener("enterFrame", moveLogo)
 Runtime:addEventListener("enterFrame", moveLogo2)
